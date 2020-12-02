@@ -1,0 +1,4 @@
+MEMC.Rproj
+^.*\.Rproj$
+^\.Rproj\.user$
+.Rproj.user/
