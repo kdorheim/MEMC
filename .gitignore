@@ -2,3 +2,5 @@ MEMC.Rproj
 ^.*\.Rproj$
 ^\.Rproj\.user$
 .Rproj.user/
+.Rproj.user
+.DS_Store
