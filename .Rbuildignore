@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^\.github/workflows/R-CMD-check\.yaml$
 ^data-raw$
+.github
