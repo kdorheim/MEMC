@@ -154,17 +154,28 @@ MEND2013_fluxes <- function(state, parms){
 }
 
 
-#' Solve the 2013 MEND
+#' Solve MEND 2013
 #'
-#' \code{MEND2013_fluxes} Defines a system of equations that
-#' describe the state of the fluxes between the pools from \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
-#' By retruning a list of named functions.
+#' \code{MEND2013} Run and solve MEND 2013 \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
 #'
-#' @param state A numeric vector of the different MEND carbon pool states.
-#' @param parms A data frame of the parameters.
-#' @return A list of functions that calculate the fluxes between \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013} carbon pools.
+#' @param parameters data.table containing the following columns: parameter, value, and units
+#' @param time a vector of the time setps
+#' @param intial_state A numeric vector of the different MEND carbon pool states.
+#' @return a data frame of MEND output variables
 #' @family 2013 MEND model functions
-#' @family carbon flux functions
+#' @family model
 #' @export
 
+MEND2013 <- function(parameters, time, inital_state){
+
+
+  out <- solver(params = parameters,
+                time = time,
+                state = inital_state,
+                carbon_pools_func = MEND2013_pools,
+                carbon_fluxes_func = MEND2013_fluxes)
+
+  return(out)
+
+}
 
