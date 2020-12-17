@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Assign the paramter values — assign_parameters • MEMC</title>
+<title>Solve MEND 2013 — MEND2013 • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Assign the paramter values — assign_parameters" />
-<meta property="og:description" content="Define parameters based on the a parameter data table that is read in." />
+<meta property="og:title" content="Solve MEND 2013 — MEND2013" />
+<meta property="og:description" content="MEND2013 Run and solve MEND 2013 Wang et al. 2013." />
 
 
 
@@ -109,35 +109,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Assign the paramter values</h1>
+    <h1>Solve MEND 2013</h1>
     
-    <div class="hidden name"><code>assign_parameters.Rd</code></div>
+    <div class="hidden name"><code>MEND2013.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Define parameters based on the a parameter data table that is read in.</p>
+    <p><code>MEND2013</code> Run and solve MEND 2013 <a href='https://doi.org/10.1890/12-0681.1'>Wang et al. 2013</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>assign_parameters</span><span class='op'>(</span><span class='va'>dt</span>, req <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>MEND2013</span><span class='op'>(</span><span class='va'>parameters</span>, <span class='va'>time</span>, <span class='va'>inital_state</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
-      <td><p>data.table containing the following columns: parameter, value, and units.</p></td>
+      <th>parameters</th>
+      <td><p>data.table containing the following columns: parameter, value, and units</p></td>
     </tr>
     <tr>
-      <th>req</th>
-      <td><p>default set to NULL, if a string vector is read will check to make sure that
-all of the required parameters are defined in the data table.</p></td>
+      <th>time</th>
+      <td><p>a vector of the time setps</p></td>
+    </tr>
+    <tr>
+      <th>intial_state</th>
+      <td><p>A numeric vector of the different MEND carbon pool states.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Nothing, but has defined the elements of the parameter column as objects in
-the environment.</p>
+    <p>a data frame of MEND output variables</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other 2013 MEND model functions: 
+<code><a href='MEND2013_fluxes.html'>MEND2013_fluxes</a>()</code>,
+<code><a href='MEND2013_pools.html'>MEND2013_pools</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Assign the paramter values — assign_parameters • MEMC</title>
+<title>The parameter values for MEND 2013 — MEND2013_params • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Assign the paramter values — assign_parameters" />
-<meta property="og:description" content="Define parameters based on the a parameter data table that is read in." />
+<meta property="og:title" content="The parameter values for MEND 2013 — MEND2013_params" />
+<meta property="og:description" content="The parameter values for MEND 2013" />
 
 
 
@@ -109,35 +109,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Assign the paramter values</h1>
+    <h1>The parameter values for MEND 2013</h1>
     
-    <div class="hidden name"><code>assign_parameters.Rd</code></div>
+    <div class="hidden name"><code>MEND2013_params.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Define parameters based on the a parameter data table that is read in.</p>
+    <p>The parameter values for MEND 2013</p>
     </div>
 
-    <pre class="usage"><span class='fu'>assign_parameters</span><span class='op'>(</span><span class='va'>dt</span>, req <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='va'>MEND2013_params</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>dt</th>
-      <td><p>data.table containing the following columns: parameter, value, and units.</p></td>
-    </tr>
-    <tr>
-      <th>req</th>
-      <td><p>default set to NULL, if a string vector is read will check to make sure that
-all of the required parameters are defined in the data table.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>Nothing, but has defined the elements of the parameter column as objects in
-the environment.</p>
+    <p>A data table consisting of 4 columns with inputs from <a href='doi.org/10.1890/12-0681.1'>Wang et al. 2013</a>.</p><dl>
+<dt>parameter</dt><dd><p>String character of the default MEND parameters.</p></dd>
+<dt>description</dt><dd><p>String character describing the parameter.</p></dd>
+<dt>units</dt><dd><p>String character of the parameter units.</p></dd>
+<dt>value</dt><dd><p>Numeric values taken from the table 2 of Wang et al. 2013</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://doi.org/10.1890/12-0681.1'>Wang et al. 2013</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Assign the paramter values — assign_parameters • MEMC</title>
+<title>MEMC solver function — solver • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Assign the paramter values — assign_parameters" />
-<meta property="og:description" content="Define parameters based on the a parameter data table that is read in." />
+<meta property="og:title" content="MEMC solver function — solver" />
+<meta property="og:description" content="Based on user defined carbon pools and flux functions solve a system of equations." />
 
 
 
@@ -109,35 +109,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Assign the paramter values</h1>
+    <h1>MEMC solver function</h1>
     
-    <div class="hidden name"><code>assign_parameters.Rd</code></div>
+    <div class="hidden name"><code>solver.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Define parameters based on the a parameter data table that is read in.</p>
+    <p>Based on user defined carbon pools and flux functions solve a system of equations.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>assign_parameters</span><span class='op'>(</span><span class='va'>dt</span>, req <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>solver</span><span class='op'>(</span><span class='va'>params</span>, <span class='va'>time</span>, <span class='va'>state</span>, <span class='va'>carbon_pools_func</span>, <span class='va'>carbon_fluxes_func</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>dt</th>
+      <th>params</th>
       <td><p>data.table containing the following columns: parameter, value, and units.</p></td>
     </tr>
     <tr>
-      <th>req</th>
-      <td><p>default set to NULL, if a string vector is read will check to make sure that
-all of the required parameters are defined in the data table.</p></td>
+      <th>time</th>
+      <td><p>a vector of the time setps</p></td>
+    </tr>
+    <tr>
+      <th>state</th>
+      <td><p>a vector of the intial state values, must be named</p></td>
+    </tr>
+    <tr>
+      <th>carbon_pools_func</th>
+      <td><p>a function defining the carbon  pools</p></td>
+    </tr>
+    <tr>
+      <th>carbon_fluxes_func</th>
+      <td><p>a function defining the carbon fluxes between pools</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments that can be read into <code><a href='https://rdrr.io/pkg/deSolve/man/ode.html'>deSolve::ode</a></code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Nothing, but has defined the elements of the parameter column as objects in
-the environment.</p>
+    <p>a long formatted data.table of the simulation results</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
