@@ -17,7 +17,7 @@ MEND2013(parameters, time, inital_state)
 a data frame of MEND output variables
 }
 \description{
-\code{MEND2013} Run and solve MEND 2013  \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
+\code{MEND2013} Run and solve MEND 2013 \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
 }
 \seealso{
 Other 2013 MEND model functions: 

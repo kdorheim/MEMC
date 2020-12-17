@@ -25,7 +25,7 @@ testthat::test_that("MEND2013", {
   expect_equal(old$value, out1$value)
 
   out2 <- MEND2013(parameters = MEND2013_params, time = t, inital_state = state )
-  expect_equal(out2, new)
+  expect_equal(out2, out1)
 
 })
 
