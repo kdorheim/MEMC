@@ -16,7 +16,8 @@ Suggests:
     knitr,
     rmarkdown,
     ggplot2, 
-    data.table
+    data.table, 
+    deSolve
 Imports: 
     Rdpack, 
     assertthat
