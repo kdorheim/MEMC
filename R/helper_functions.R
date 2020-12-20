@@ -16,7 +16,7 @@ assign_parameters <- function(dt, req = NULL){
   assert_that(is.numeric(dt[['value']]))
   if(!is.null(req)){
     missing <- !req %in% dt[['parameter']]
-    assert_that(all(!missing), msg = cat('dt missing parameters: ', paste0(req[missing], collapse = ', ')))
+    assert_that(all(!missing), msg = paste('dt missing parameters: ', paste0(req[missing], collapse = ', ')))
   }
 
   mapply(assign, x = dt$parameter, value = dt$value, inherits = TRUE)
@@ -49,14 +49,14 @@ solver <- function(params, time, state, carbon_pools_func, carbon_fluxes_func, .
   req_args  <-c('t', 'state', 'parms', 'flux_function')
   pool_args <- as.vector(names(formals(carbon_pools_func)))
   missing   <- req_args[!req_args %in% pool_args]
-  assert_that(length(missing) ==  0,  msg = cat('carbon_pool_func missing required arguments: ', paste(missing, collapse = ', ')))
+  assert_that(length(missing) ==  0,  msg = paste('carbon_pool_func missing required arguments: ', paste(missing, collapse = ', ')))
 
 
   assert_that(is.function(carbon_fluxes_func))
   req_args  <- c("state", "parms")
   flux_args <- as.vector(names(formals(carbon_fluxes_func)))
   missing   <- req_args[!req_args %in% flux_args]
-  assert_that(length(missing) == 0, msg = cat('carbon_flux_func missing required arguments: ', paste(missing, collapse = ', ')))
+  assert_that(length(missing) == 0, msg = paste('carbon_flux_func missing required arguments: ', paste(missing, collapse = ', ')))
   assert_that(all(!grepl(pattern = 'flux', flux_args)), msg = 'check carbon_fluxes_func, make sure the pool function is not being used in stead.')
 
 
