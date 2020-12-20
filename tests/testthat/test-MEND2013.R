@@ -1,31 +1,32 @@
+context('MEND2013')
 
-context('old new test')
+# Define the inital state values
+B = 2; D = 1
+P = 10; Q = 0.1
+M = 5; EP = 0.00001
+EM =  0.00001; IC = 0
+Tot = 18.10002
+
+state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC,  Tot = Tot)
 
 
-testthat::test_that("MEND2013", {
+# Test the functions that make up the MEND 2013 system of equations.
+test_that("MEND 2013 fluxes", {
 
-  B = 2; D = 1
-  P = 10; Q = 0.1
-  M = 5; EP = 0.00001
-  EM =  0.00001; IC = 0
-  Tot = 18.10002
+  # Make sure that an error is thrown when the incorrect inputs are  used.
+  expect_error(MEND2013_fluxes(state = state[1:2], parms = MEND2013_params),
+               "state does not have all of these name(s): 'B', 'D', 'P', 'Q', 'M', 'EP', 'EM'", fixed = TRUE)
+  expect_error(MEND2013_fluxes(state = state, parms = MEND2013_params[ ,1:2]),
+               "parms does not have all of these name(s): 'parameter', 'description', 'units', 'value'", fixed = TRUE)
+  expect_error(MEND2013_fluxes(state = state, parms = MEND2013_params[1:2,]),
+               "parms missing values for:  E.c, V.d, m.r, K.d, V.m, K.m, K.ads, Q.max, K.des, p.ep, p.em, r.ep, r.em", fixed = TRUE)
 
-  state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC,  Tot = Tot)
-  t <- seq(0, 1e3, by = 0.1)
+  #  MEND2013_fluxes should return a functions that can return numeric values.
+  x <- MEND2013_fluxes(state = state, parms = MEND2013_params)
+  testthat::expect_true(all(unlist(lapply(x, is.function))))
 
-  out1 <- solver(params = MEND2013_params,
-                time = t,
-                state = state,
-                carbon_pools_func = MEND2013_pools,
-                carbon_fluxes_func = MEND2013_fluxes)
+  xx <- x$F1()
+  testthat::expect_true(is.numeric(xx))
 
-  old <- read.csv('compdata/old_new-MEND2013.csv')
-
-  expect_equal(dim(old), dim(out1))
-  expect_equal(old$value, out1$value)
-
-  out2 <- MEND2013(parameters = MEND2013_params, time = t, inital_state = state )
-  expect_equal(out2, out1)
 
 })
-
