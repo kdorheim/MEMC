@@ -15,19 +15,24 @@
 #' @return A list of the state variables
 #' @references \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}
 #' @importFrom Rdpack reprompt
+#' @importFrom assertthat assert_that has_name
 #' @family 2013 MEND model functions
 #' @family carbon pool functions
-#' @export
+#' @noRd
 MEND2013_pools <- function(t, state, parms, flux_function = MENDplus::MEND2013_fluxes){
 
   # Check the inputs
   required_states <- c("P", "M", "Q", "B", "D", "EP", "EM", "IC", "Tot")
   missing_states  <- required_states[!required_states %in% names(state)]
-  assertthat::assert_that(length(missing_states) == 0, msg = paste0('missing states: ', paste(missing_states, collapse = ',  ')))
-  assertthat::assert_that(all(required_states  == names(state)), msg = paste0('state pools must be in the following order: ', paste(required_states, collapse = ',  ')))
-  assertthat::assert_that(data.table::is.data.table(parms))
-  assertthat::assert_that(assertthat::has_name(x = parms, which = c("parameter", "description", "units", "value")))
-  assertthat::assert_that(is.function(flux_function))
+  assert_that(length(missing_states) == 0, msg = paste0('missing states: ', paste(missing_states, collapse = ',  ')))
+  assert_that(all(required_states  == names(state)), msg = paste0('state pools must be in the following order: ', paste(required_states, collapse = ',  ')))
+  assert_that(data.table::is.data.table(parms))
+  assert_that(has_name(x = parms, which = c("parameter", "description", "units", "value")))
+  assert_that(is.function(flux_function))
+
+  req <- c('I.p', 'g.d', 'f.d', 'I.p', 'I.d')
+  missing <- setdiff(req, parms$parameter)
+  assert_that(length(missing) == 0, msg = paste('parms missing values for: ', paste0(missing, collapse = ', ')))
 
 
   # Format the parameters into a vector.
@@ -93,7 +98,6 @@ MEND2013_fluxes <- function(state, parms){
   assert_that(has_name(x = state, which = c("B", "D", "P", "Q", "M", "EP", "EM")))
   assert_that(data.table::is.data.table(parms))
   assert_that(has_name(x = parms, which = c("parameter", "description", "units", "value")))
-
   req <- c('E.c', 'V.d', 'm.r', 'K.d', 'V.p', 'K.p', 'V.m', 'K.m', 'K.ads',
            'Q.max', 'K.des', 'p.ep', 'p.em', 'r.ep',  'r.em')
   missing <- setdiff(req, parms$parameter)
