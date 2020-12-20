@@ -22,5 +22,10 @@ The parameter values for MEND 2013
 \references{
 \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}
 }
+\seealso{
+Other parameters: 
+\code{\link{MEND2013_initalState}}
+}
+\concept{MEND2012}
 \concept{parameters}
 \keyword{datasets}

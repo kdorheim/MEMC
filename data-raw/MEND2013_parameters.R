@@ -2,6 +2,7 @@
 # model parameters through steady‐state and dynamic analyses. Ecological Applications,
 # 23: 255-272. doi:10.1890/12-0681.1
 
+# Parameter table -----------------------------------------------------------------------------------------
 # Model parameter/inputs names from table 2.
 params <- c('V.p',
            'K.p',
@@ -99,4 +100,18 @@ MEND2013_params[parameter == 'fI.d', ]$value <- MEND2013_params[parameter == 'I.
 assertthat::assert_that(sum(is.na(MEND2013_params$value)) == 0, msg = 'Not all default parameter values have been defined.')
 
 usethis::use_data(x = MEND2013_params, overwrite = TRUE)
+
+# Inital state values -----------------------------------------------------------------------------------
+# Define the inital state values, these values are taken directly from the manuscript.
+B = 2; D = 1
+P = 10; Q = 0.1
+M = 5; EP = 0.00001
+EM =  0.00001; IC = 0
+Tot = 18.10002
+
+state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC,  Tot = Tot)
+MEND2013_initalState <- state
+usethis::use_data(x = MEND2013_initalState, overwrite = TRUE)
+
+
 

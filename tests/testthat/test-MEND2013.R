@@ -11,7 +11,7 @@ state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC, 
 
 
 # Test the functions that make up the MEND 2013 system of equations.
-test_that("MEND 2013 fluxes", {
+test_that("MEND2013_fluxes", {
 
   # Make sure that an error is thrown when the incorrect inputs are  used.
   expect_error(MEND2013_fluxes(state = state[1:2], parms = MEND2013_params),
@@ -31,7 +31,7 @@ test_that("MEND 2013 fluxes", {
 })
 
 
-testthat::test_that("MEND2013_pools", {
+test_that("MEND2013_pools", {
 
   # Make sure that the function throws errors when the incorrect inputs are used.
   state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC,  Tot = Tot)
@@ -57,5 +57,16 @@ testthat::test_that("MEND2013_pools", {
   # Length of the output should equal the number of states (pools of carbon) and is some number.
   expect_true(is.numeric(sum(unlist(yy))))
   expect_equal(length(yy[[1]]), length(state))
+
+})
+
+
+test_that("deafult MEND values", {
+
+  # Make sure that the default MEND values exist and that the total carbon equals the sum of the other pools.
+  expect_true(is.vector(MEND2013_initalState))
+  expect_equal(sum(MEND2013_initalState[names(MEND2013_initalState) != 'Tot']), MEND2013_initalState[['Tot']])
+
+  expect_true(data.table::is.data.table(MEND2013_params))
 
 })

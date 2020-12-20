@@ -24,9 +24,10 @@ library(data.table)
 THEME <- theme_bw()
 ```
 
+# MEND 2013 Background
 
-The 2013 MEND model, originally documented in [Wang et. al 2013](https://doi.org/10.1890/12-0681.1)
-is a system of differential equations that describe soil carbon dynamics. There are 8 different carbon pools represented as the circles that are connected by 12 arrows, which represent the fluxes between carbon pools. 
+The 2013 MEND model, originally documented in c
+is a system of differential equations that describe soil carbon dynamics. There are 8 different carbon pools represented as the circles that are connected by 12 arrows, which represent the fluxes between carbon pools. For more information about the MEND 2013 model we encourage users to read [Wang et. al 2013](https://doi.org/10.1890/12-0681.1). 
 
 \
 
@@ -36,21 +37,19 @@ is a system of differential equations that describe soil carbon dynamics. There 
 
 # Solve default 2013 MEND
 
-Start out by defining the initial sizes of the carbon pools. 
+Start out by defining the initial sizes of the carbon pools, since we would like to solve for the default MEND we can simiply us the intial sate vector provided in the package. 
 
 ```{r}
-B = 2
-D = 1
-P = 10
-Q = 0.1
-M = 5
-EP = 0.00001
-EM =  0.00001
-IC = 0
-Tot = 18.10002
-
-state <- c(P = P,  M = M,  Q = Q,  B = B,  D = D,  EP = EP,  EM = EM,  IC = IC,  Tot = Tot)
+state <- MEND2013_initalState
 ```
+
+The same goes for the data table of parameter values, the default parameter values from [Wang et. al 2013](https://doi.org/10.1890/12-0681.1) are supplied as package data. 
+
+```{r}
+params <- MEND2013_params
+```
+
+
 
 Define the time vector.  
 
@@ -61,7 +60,7 @@ t <- seq(0, 1e3, by = 0.1)
 Solve the MEND configuration. 
 
 ```{r}
-MEND2013_example1 <- MEND2013(parameters = MEND2013_params, time = t, inital_state = state)
+MEND2013_example1 <- MEND2013(parameters = params, time = t, inital_state = state)
 ```
 
 

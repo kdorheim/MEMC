@@ -7,22 +7,17 @@
 MEND2013(parameters, time, inital_state)
 }
 \arguments{
-\item{parameters}{data.table containing the following columns: parameter, value, and units}
+\item{parameters}{data.table containing the following columns: parameter, value, and units. Default values are stored as pacakge see \code{MEND2013_params}.}
 
-\item{time}{a vector of the time setps}
+\item{time}{a vector of the time setps.}
 
-\item{intial_state}{A numeric vector of the different MEND carbon pool states.}
+\item{inital_state}{a numeric vector of the different MEND carbon pool states. Default values are probvide as package data see \code{MEND2013_initalState}}
 }
 \value{
 a data frame of MEND output variables
 }
 \description{
 \code{MEND2013} Run and solve MEND 2013 \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
-}
-\seealso{
-Other 2013 MEND model functions: 
-\code{\link{MEND2013_fluxes}()},
-\code{\link{MEND2013_pools}()}
 }
 \concept{2013 MEND model functions}
 \concept{model}
