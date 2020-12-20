@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>The parameter values for MEND 2013 — MEND2013_params • MEMC</title>
+<title>The inital carbon pool values for MEND 2013 — MEND2013_initalState • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="The parameter values for MEND 2013 — MEND2013_params" />
-<meta property="og:description" content="The parameter values for MEND 2013" />
+<meta property="og:title" content="The inital carbon pool values for MEND 2013 — MEND2013_initalState" />
+<meta property="og:description" content="The inital carbon pool values for MEND 2013" />
 
 
 
@@ -109,25 +109,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>The parameter values for MEND 2013</h1>
+    <h1>The inital carbon pool values for MEND 2013</h1>
     
-    <div class="hidden name"><code>MEND2013_params.Rd</code></div>
+    <div class="hidden name"><code>MEND2013_initalState.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The parameter values for MEND 2013</p>
+    <p>The inital carbon pool values for MEND 2013</p>
     </div>
 
-    <pre class="usage"><span class='va'>MEND2013_params</span></pre>
+    <pre class="usage"><span class='va'>MEND2013_initalState</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data table consisting of 4 columns with inputs from <a href='doi.org/10.1890/12-0681.1'>Wang et al. 2013</a>.</p><dl>
-<dt>parameter</dt><dd><p>String character of the default MEND parameters.</p></dd>
-<dt>description</dt><dd><p>String character describing the parameter.</p></dd>
-<dt>units</dt><dd><p>String character of the parameter units.</p></dd>
-<dt>value</dt><dd><p>Numeric values taken from the table 2 of Wang et al. 2013</p></dd>
+    <p>A vector of the intial states of the Carbon pools from MEND 2013 <a href='doi.org/10.1890/12-0681.1'>Wang et al. 2013</a>.</p><dl>
+<dt>'P'</dt><dd><p>'Particulate organic carbon or POC'</p></dd>
+<dt>'M'</dt><dd><p>'Mineral associated organic carbon or MOC, note that this excludes Q'</p></dd>
+<dt>'Q'</dt><dd><p>'Adsorbed phase of DOC'</p></dd>
+<dt>'B'</dt><dd><p>'Microbial biomass carbon or MBC'</p></dd>
+<dt>'D'</dt><dd><p>'Dissolved organic carbon or DOC'</p></dd>
+<dt>'EP'</dt><dd><p>'Enzyme for decomposition of P'</p></dd>
+<dt>'EM'</dt><dd><p>'Ensyme for decomposition of M'</p></dd>
+<dt>'IC'</dt><dd><p>'Accumulated CO2 flux'</p></dd>
+<dt>'Tot'</dt><dd><p>'Total carbon in the patch'</p></dd>
 
 </dl>
 
@@ -137,7 +142,7 @@
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other parameters: 
-<code><a href='MEND2013_initalState.html'>MEND2013_initalState</a></code></p></div>
+<code><a href='MEND2013_params.html'>MEND2013_params</a></code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
