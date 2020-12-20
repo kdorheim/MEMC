@@ -30,12 +30,6 @@
       "Repository": "CRAN",
       "Hash": "d1bc1c8e9c0ace57ec9ffea01021d45f"
     },
-    "MENDplus": {
-      "Package": "MENDplus",
-      "Version": "0.1.0",
-      "Source": "unknown",
-      "Hash": "e9a4281ecf24aee89ab9be3da92192bc"
-    },
     "Matrix": {
       "Package": "Matrix",
       "Version": "1.2-18",
@@ -406,13 +400,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "61e4a10781dd00d7d81dd06ca9b94e95"
-    },
-    "mcmc": {
-      "Package": "mcmc",
-      "Version": "0.9-7",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "aab79cde1fef3861c9eed1cbc3f931fb"
     },
     "memoise": {
       "Package": "memoise",

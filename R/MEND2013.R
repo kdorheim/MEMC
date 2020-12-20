@@ -19,7 +19,7 @@
 #' @family 2013 MEND model functions
 #' @family carbon pool functions
 #' @noRd
-MEND2013_pools <- function(t, state, parms, flux_function = MENDplus::MEND2013_fluxes){
+MEND2013_pools <- function(t, state, parms, flux_function = MEND2013_fluxes){
 
   # Check the inputs
   required_states <- c("P", "M", "Q", "B", "D", "EP", "EM", "IC", "Tot")
