@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -48,7 +50,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/MEND2103_RM_example.html">MEND2013 RM example</a>
+    </li>
+    <li>
       <a href="../articles/MEND_2013_example.html">MEND 2013 Example</a>
+    </li>
+    <li>
+      <a href="../articles/model_intercomparison.html">model_intercomparison</a>
     </li>
   </ul>
 </li>
@@ -78,18 +86,18 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the package, this requires that it had already been installed. </span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">MEMC</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">MEMC</span><span class="op">)</span>
 
 <span class="co"># Load other packages used in this vignette</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://Rdatatable.gitlab.io/data.table">data.table</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span>
 
 <span class="co"># Set up a common theme for all of the plots</span>
-<span class="va">THEME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="va">THEME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <div id="mend-2013-background" class="section level1">
 <h1 class="hasAnchor">
-<a href="#mend-2013-background" class="anchor"></a>MEND 2013 Background</h1>
-<p>The 2013 MEND model, originally documented in c is a system of differential equations that describe soil carbon dynamics. There are 8 different carbon pools represented as the circles that are connected by 12 arrows, which represent the fluxes between carbon pools. For more information about the MEND 2013 model we encourage users to read <a href="https://doi.org/10.1890/12-0681.1">Wang et. al 2013</a>.</p>
+<a href="#mend-2013-background" class="anchor" aria-hidden="true"></a>MEND 2013 Background</h1>
+<p>The 2013 MEND model, originally documented in c is a system of differential equations that describe soil carbon dynamics. There are 8 different carbon pools represented as the circles that are connected by 12 arrows, which represent the fluxes between carbon pools. For more information about the MEND 2013 model we encourage users to read <a href="https://doi.org/10.1890/12-0681.1" class="external-link">Wang et. al 2013</a>.</p>
 <p><br></p>
 <div class="figure">
 <img src="https://esajournals.onlinelibrary.wiley.com/cms/asset/b4cc71bd-8987-4226-8ac1-9e5b6d547af2/eap2013231255-fig-0001-m.jpg" style="width:70.0%" alt=""><p class="caption">Fig 1: conceptual diagram of MEND from Wang et al. 2013</p>
@@ -98,30 +106,30 @@
 </div>
 <div id="solve-default-2013-mend" class="section level1">
 <h1 class="hasAnchor">
-<a href="#solve-default-2013-mend" class="anchor"></a>Solve default 2013 MEND</h1>
+<a href="#solve-default-2013-mend" class="anchor" aria-hidden="true"></a>Solve default 2013 MEND</h1>
 <p>Start out by defining the initial sizes of the carbon pools, since we would like to solve for the default MEND we can simiply us the intial sate vector provided in the package.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">state</span> <span class="op">&lt;-</span> <span class="va">MEND2013_initalState</span></code></pre></div>
-<p>The same goes for the data table of parameter values, the default parameter values from <a href="https://doi.org/10.1890/12-0681.1">Wang et. al 2013</a> are supplied as package data.</p>
+<p>The same goes for the data table of parameter values, the default parameter values from <a href="https://doi.org/10.1890/12-0681.1" class="external-link">Wang et. al 2013</a> are supplied as package data.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">params</span> <span class="op">&lt;-</span> <span class="va">MEND2013_params</span></code></pre></div>
 <p>Define the time vector.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1e3</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1e3</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <p>Solve the MEND configuration.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">MEND2013_example1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MEND2013.html">MEND2013</a></span><span class="op">(</span>parameters <span class="op">=</span> <span class="va">params</span>, time <span class="op">=</span> <span class="va">t</span>, inital_state <span class="op">=</span> <span class="va">state</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">MEND2013_example1</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">value</span>, color <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="st">'variable'</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">MEND2013_example1</span><span class="op">$</span><span class="va">units</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+<code class="sourceCode R"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">MEND2013_example1</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">value</span>, color <span class="op">=</span> <span class="va">variable</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="st">'variable'</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">MEND2013_example1</span><span class="op">$</span><span class="va">units</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
   <span class="va">THEME</span> </code></pre></div>
 <p><img src="MEND_2013_example_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div id="change-mend-parameter-values" class="section level1">
 <h1 class="hasAnchor">
-<a href="#change-mend-parameter-values" class="anchor"></a>Change MEND parameter values</h1>
+<a href="#change-mend-parameter-values" class="anchor" aria-hidden="true"></a>Change MEND parameter values</h1>
 <p>Change one of the input paramter values.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Extract the parameter value. </span>
@@ -141,15 +149,15 @@
 <span class="va">MEND2013_example1</span> <span class="op">&lt;-</span> <span class="va">MEND2013_example1</span><span class="op">[</span> , <span class="va">scn</span> <span class="op">:=</span> <span class="st">'default'</span><span class="op">]</span>
 <span class="va">MEND2013_example2</span> <span class="op">&lt;-</span> <span class="va">MEND2013_example2</span><span class="op">[</span> , <span class="va">scn</span> <span class="op">:=</span> <span class="st">'K.d X 2'</span><span class="op">]</span>
 
-<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html">rbind</a></span><span class="op">(</span><span class="va">MEND2013_example1</span>, <span class="va">MEND2013_example2</span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/rbindlist.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">MEND2013_example1</span>, <span class="va">MEND2013_example2</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">value</span>, color <span class="op">=</span> <span class="va">scn</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="st">'variable'</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Increasing K.d'</span>,
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">d</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">value</span>, color <span class="op">=</span> <span class="va">scn</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="st">'variable'</span>, scales <span class="op">=</span> <span class="st">'free'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">'Increasing K.d'</span>,
       subtitle <span class="op">=</span> <span class="st">'half-saturation constant of uptake of D for growth of B'</span>,
-       y <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html">unique</a></span><span class="op">(</span><span class="va">MEND2013_example1</span><span class="op">$</span><span class="va">units</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+       y <span class="op">=</span> <span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/duplicated.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">MEND2013_example1</span><span class="op">$</span><span class="va">units</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="MEND_2013_example_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
   </div>
@@ -165,11 +173,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Kalyn Dorheim.</p>
+  <p></p>
+<p>Developed by Kalyn Dorheim.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -177,6 +187,8 @@
 
   
 
+
+  
 
   </body>
 </html>

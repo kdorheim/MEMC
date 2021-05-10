@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hello, World! — hello • MEMC</title>
+<title>Solve different MEND configurations — model_intercomparison • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Hello, World! — hello" />
-<meta property="og:description" content="Prints 'Hello, world!'." />
+<meta property="og:title" content="Solve different MEND configurations — model_intercomparison" />
+<meta property="og:description" content="Solve different MEND configurations" />
+
+
 
 
 
@@ -56,9 +58,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -81,6 +90,24 @@
         <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/MEND2103_RM_example.html">MEND2013 RM example</a>
+    </li>
+    <li>
+      <a href="../articles/MEND_2013_example.html">MEND 2013 Example</a>
+    </li>
+    <li>
+      <a href="../articles/model_intercomparison.html">model_intercomparison</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -97,22 +124,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Hello, World!</h1>
+    <h1>Solve different MEND configurations</h1>
     
-    <div class="hidden name"><code>hello.Rd</code></div>
+    <div class="hidden name"><code>model_intercomparison.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Prints 'Hello, world!'.</p>
+    <p>Solve different MEND configurations</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hello</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>model_intercomparison</span><span class='op'>(</span><span class='va'>parameters</span>, <span class='va'>time</span>, <span class='va'>inital_state</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>parameters</th>
+      <td><p>data.table containing the following columns: parameter, value, and units. Default values are stored as pacakge see <code>MEND2013_params</code>.</p></td>
+    </tr>
+    <tr>
+      <th>time</th>
+      <td><p>a vector of the time setps.</p></td>
+    </tr>
+    <tr>
+      <th>inital_state</th>
+      <td><p>a numeric vector of the different MEND carbon pool states. Default values are probvide as package data see <code>MEND2013_initalState</code></p></td>
+    </tr>
+    </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>hello</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in hello(): could not find function "hello"</span></div></pre>
+    <p>a data frame of output from the different MEND configurations, <code>MEND2013</code> and <code>MEND2013_RM</code></p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>Other 2013 MEND model functions: 
+<code><a href='MEND2013_RM.html'>MEND2013_RM</a>()</code>,
+<code><a href='MEND2013.html'>MEND2013</a>()</code></p>
+<p>Other model: 
+<code><a href='MEND2013_RM.html'>MEND2013_RM</a>()</code>,
+<code><a href='MEND2013.html'>MEND2013</a>()</code></p></div>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -124,11 +175,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kalyn Dorheim.</p>
+  <p><p>Developed by Kalyn Dorheim.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -136,6 +187,8 @@
 
   
 
+
+  
 
   </body>
 </html>

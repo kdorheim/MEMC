@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Define the 2013 MEND fluxes. — MEND2013_fluxes • MEMC</title>
+<title>Solve MEND 2013 with reverse michaelis menten kinetics — MEND2013_RM • MEMC</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,11 @@
 
 
 
-<meta property="og:title" content="Define the 2013 MEND fluxes. — MEND2013_fluxes" />
-<meta property="og:description" content="MEND2013_fluxes Defines a system of equations that
-describe the state of the fluxes between the pools from Wang et al. 2013.
-By retruning a list of named functions." />
+<meta property="og:title" content="Solve MEND 2013 with reverse michaelis menten kinetics — MEND2013_RM" />
+<meta property="og:description" content="MEND2013_RM Run and solve MEND 2013  Wang et al. 2013 that
+uses reverse michaelis menten kinetics in microbial uptake of DOC." />
+
+
 
 
 
@@ -58,9 +59,16 @@ By retruning a list of named functions." />
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -91,7 +99,13 @@ By retruning a list of named functions." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/MEND2103_RM_example.html">MEND2013 RM example</a>
+    </li>
+    <li>
       <a href="../articles/MEND_2013_example.html">MEND 2013 Example</a>
+    </li>
+    <li>
+      <a href="../articles/model_intercomparison.html">model_intercomparison</a>
     </li>
   </ul>
 </li>
@@ -111,40 +125,46 @@ By retruning a list of named functions." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Define the 2013 MEND fluxes.</h1>
+    <h1>Solve MEND 2013 with reverse michaelis menten kinetics</h1>
     
-    <div class="hidden name"><code>MEND2013_fluxes.Rd</code></div>
+    <div class="hidden name"><code>MEND2013_RM.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>MEND2013_fluxes</code> Defines a system of equations that
-describe the state of the fluxes between the pools from <a href='https://doi.org/10.1890/12-0681.1'>Wang et al. 2013</a>.
-By retruning a list of named functions.</p>
+    <p><code>MEND2013_RM</code> Run and solve MEND 2013  <a href='https://doi.org/10.1890/12-0681.1'>Wang et al. 2013</a> that
+uses reverse michaelis menten kinetics in microbial uptake of DOC.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>MEND2013_fluxes</span><span class='op'>(</span><span class='va'>state</span>, <span class='va'>parms</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>MEND2013_RM</span><span class='op'>(</span><span class='va'>parameters</span>, <span class='va'>time</span>, <span class='va'>inital_state</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>state</th>
-      <td><p>A numeric vector of the different MEND carbon pool states.</p></td>
+      <th>parameters</th>
+      <td><p>data.table containing the following columns: parameter, value, and units. Default values are stored as pacakge see <code>MEND2013_params</code>.</p></td>
     </tr>
     <tr>
-      <th>parms</th>
-      <td><p>A data frame of the parameters.</p></td>
+      <th>time</th>
+      <td><p>a vector of the time setps.</p></td>
+    </tr>
+    <tr>
+      <th>inital_state</th>
+      <td><p>a numeric vector of the different MEND carbon pool states. Default values are probvide as package data see <code>MEND2013_initalState</code></p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of functions that calculate the fluxes between <a href='https://doi.org/10.1890/12-0681.1'>Wang et al. 2013</a> carbon pools.</p>
+    <p>a data frame of MEND output variables</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other 2013 MEND model functions: 
-<code><a href='MEND2013_pools.html'>MEND2013_pools</a>()</code>,
-<code><a href='MEND2013.html'>MEND2013</a>()</code></p></div>
+<code><a href='MEND2013.html'>MEND2013</a>()</code>,
+<code><a href='model_intercomparison.html'>model_intercomparison</a>()</code></p>
+<p>Other model: 
+<code><a href='MEND2013.html'>MEND2013</a>()</code>,
+<code><a href='model_intercomparison.html'>model_intercomparison</a>()</code></p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -157,11 +177,11 @@ By retruning a list of named functions.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Kalyn Dorheim.</p>
+  <p><p>Developed by Kalyn Dorheim.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -169,6 +189,8 @@ By retruning a list of named functions.</p>
 
   
 
+
+  
 
   </body>
 </html>
