@@ -17,6 +17,9 @@ test_that("assign_parameters:", {
   assign_parameters(data.table::data.table('parameter' = 'g', 'value' = 12), req = 'g')
   expect_equal(g, 12)
 
+  # clean up the global environment
+  rm(list=ls())
+
 })
 
 
