@@ -7,26 +7,26 @@
 model_intercomparison(parameters, time, inital_state)
 }
 \arguments{
-\item{parameters}{data.table containing the following columns: parameter, value, and units. Default values are stored as pacakge see \code{MEND2013_params}.}
+\item{parameters}{data.table containing the following columns: parameter, value, and units. Default values are stored as pacakge see \code{MEND_params}.}
 
 \item{time}{a vector of the time setps.}
 
-\item{inital_state}{a numeric vector of the different MEND carbon pool states. Default values are probvide as package data see \code{MEND2013_initalState}}
+\item{inital_state}{a numeric vector of the different MEND carbon pool states. Default values are probvide as package data see \code{MEND_initalState}}
 }
 \value{
-a data frame of output from the different MEND configurations, \code{MEND2013} and \code{MEND2013_RM}
+a data frame of output from the different MEND configurations, \code{MEND} and \code{MEND_RM}
 }
 \description{
 Solve different MEND configurations
 }
 \seealso{
 Other 2013 MEND model functions: 
-\code{\link{MEND2013_RM}()},
-\code{\link{MEND2013}()}
+\code{\link{MEND_RM}()},
+\code{\link{MEND}()}
 
 Other model: 
-\code{\link{MEND2013_RM}()},
-\code{\link{MEND2013}()}
+\code{\link{MEND_RM}()},
+\code{\link{MEND}()}
 }
 \concept{2013 MEND model functions}
 \concept{model}

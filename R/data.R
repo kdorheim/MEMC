@@ -8,9 +8,9 @@
 #' \item{value}{Numeric values taken from the table 2 of Wang et al. 2013}
 #' }
 #' @family parameters
-#' @family MEND2012
+#' @family MEND
 #' @references \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}
-"MEND2013_params"
+"MEND_params"
 
 
 #' The inital carbon pool values for MEND 2013
@@ -28,7 +28,7 @@
 #' \item{'Tot'}{'Total carbon in the patch'}
 #' }
 #' @family parameters
-#' @family MEND2013
+#' @family MEND
 #' @references \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}
-"MEND2013_initalState"
+"MEND_initalState"
 

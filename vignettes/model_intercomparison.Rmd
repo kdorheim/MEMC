@@ -33,9 +33,9 @@ Add some links to the different configurations.
 
 
 ```{r}
-results <- model_intercomparison(parameters = MEND2013_params,         # Use the default parameters stored as package data
+results <- model_intercomparison(parameters = MEND_params,         # Use the default parameters stored as package data
                        time = seq(0, 1e3, by = 0.1),        # Define the time vector
-                       inital_state = MEND2013_initalState) # Use the default inital state values stored as package data
+                       inital_state = MEND_initalState) # Use the default inital state values stored as package data
 ```
 
 
