@@ -12,12 +12,13 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Suggests: 
-    testthat (>= 3.0.0),
+    testthat,
     knitr,
     rmarkdown,
     ggplot2, 
     data.table, 
-    deSolve
+    deSolve, 
+    dplyr
 Imports: 
     Rdpack, 
     assertthat
