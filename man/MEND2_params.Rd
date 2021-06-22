@@ -27,9 +27,9 @@ Other parameters:
 \code{\link{MEND_params}}
 
 Other MEND2: 
-\code{\link{MEND2_RM}()},
 \code{\link{MEND2_initalState}},
-\code{\link{MEND2}()}
+\code{\link{MEND2}()},
+\code{\link{compare_MEND2}()}
 }
 \concept{MEND2}
 \concept{parameters}

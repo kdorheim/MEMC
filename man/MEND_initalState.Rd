@@ -32,7 +32,9 @@ Other inital values:
 \code{\link{MEND2_initalState}}
 
 Other MEND: 
-\code{\link{MEND_params}}
+\code{\link{MEND_params}},
+\code{\link{MEND}()},
+\code{\link{compare_MEND}()}
 }
 \concept{MEND}
 \concept{inital values}

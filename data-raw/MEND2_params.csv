@@ -2,7 +2,7 @@ parameter,description,units,value
 V.p1,maximum specific decomposition rate for P1 by EP,mgC mgC^-1 h^-1,1.5
 V.p2,maximum specific decomposition rate for P2 by EP,mgC mgC^-1 h^-1,1.5
 K.p1,half-saturation constant for decomposition of P1,mgC / g soil,50
-K.p2,half-saturation constant for decomposition of P2,mgC / g soil,2
+K.p2,half-saturation constant for decomposition of P2,mgC / g soil,5
 V.m,maximum specific decomposition rate for M by EM,mgC mgC^-1 h^-1,0.1
 K.m,half-saturation constant for decomposition of M,mg C/g soil,250
 V.d1,maximum specific uptake rate of D1 for growth of B,mg C/g soil,5.00E-04

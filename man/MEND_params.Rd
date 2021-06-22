@@ -14,7 +14,7 @@ A data table consisting of 4 columns with inputs from \href{doi.org/10.1890/12-0
 }
 }
 \usage{
-MEND_params
+data(MEND_params)
 }
 \description{
 The parameter values for MEND 2013
@@ -27,7 +27,9 @@ Other parameters:
 \code{\link{MEND2_params}}
 
 Other MEND: 
-\code{\link{MEND_initalState}}
+\code{\link{MEND_initalState}},
+\code{\link{MEND}()},
+\code{\link{compare_MEND}()}
 }
 \concept{MEND}
 \concept{parameters}

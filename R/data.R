@@ -1,5 +1,9 @@
 #' The parameter values for MEND 2013
 #'
+#' @docType data
+#' @usage data(MEND_params)
+#' @keywords datasets
+#'
 #' @format A data table consisting of 4 columns with inputs from \href{doi.org/10.1890/12-0681.1}{Wang et al. 2013}.
 #' \describe{
 #' \item{parameter}{String character of the default MEND parameters.}
