@@ -4,11 +4,11 @@
 context('old new tests')
 
 # Read in the archived comparison data.
-old <- read.csv('compdata/MEND-comp.csv')
+old <- read.csv('compdata/comp.csv')
 
 t <- unique(old$time)
 
-# The default base MEND 2013 model, MEND with a single pool.
+# MEND varaitions -------------------------------------------------------------------------
 testthat::test_that("MEND", {
   # Set up and solve MEND two different ways, with the internal functions and
   # with the MEND wrapper.
@@ -26,7 +26,6 @@ testthat::test_that("MEND", {
   expect_equal(old$value, out1$value)
 })
 
-# The default base single pool MEND reverse michaelis menten.
 testthat::test_that("MEND_RM", {
 
   out1 <- MEND_RM(parameters = MEND_params, time = t, inital_state = MEND_initalState)
@@ -35,3 +34,52 @@ testthat::test_that("MEND_RM", {
 
 })
 
+testthat::test_that("MEND_ECA", {
+
+  out1 <- MEND_ECA(parameters = MEND_params, time = t, inital_state = MEND_initalState)
+  comp_data <- old[old$name == "MEND_ECA", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
+
+testthat::test_that("MEND_MILLEN", {
+
+  out1 <- MEND_MILLEN(parameters = MEND_params, time = t, inital_state = MEND_initalState)
+  comp_data <- old[old$name == "MEND_MILLEN", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
+
+
+# MEND2 varaitions -------------------------------------------------------------------------
+testthat::test_that("MEND2", {
+
+  out1 <- MEND2(parameters = MEND2_params, time = t, inital_state = MEND2_initalState)
+  comp_data <- old[old$name == "MEND2", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
+
+testthat::test_that("MEND2_RM", {
+
+  out1 <- MEND2_RM(parameters = MEND2_params, time = t, inital_state = MEND2_initalState)
+  comp_data <- old[old$name == "MEND2_RM", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
+
+testthat::test_that("MEND2_ECA", {
+
+  out1 <- MEND2_ECA(parameters = MEND2_params, time = t, inital_state = MEND2_initalState)
+  comp_data <- old[old$name == "MEND2_ECA", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
+
+testthat::test_that("MEND2_MILLEN", {
+
+  out1 <- MEND2_MILLEN(parameters = MEND2_params, time = t, inital_state = MEND2_initalState)
+  comp_data <- old[old$name == "MEND2_MILLEN", ]
+  expect_equal(comp_data$value, out1$value)
+
+})
