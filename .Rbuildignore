@@ -1,7 +1,7 @@
-^renv$
-^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.github/workflows/R-CMD-check\.yaml$
 ^data-raw$
 .github
+^doc$
+^Meta$
