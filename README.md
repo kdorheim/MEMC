@@ -33,3 +33,18 @@ install_github('Microbial-Explicit-Model/MEMC')
 ```
 
 
+
+
+kalyn so things to do 
+* in the configure model function set up the ability to name the model --> should be added to the run model function 
+* there should be some way during the model configuration to modify the flux functions... 
+* can still have a mip function 
+* what will be the easiest way to build some of the core model configurations.... 
+
+
+
+
+
+
+
+
