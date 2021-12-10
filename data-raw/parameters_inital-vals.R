@@ -1,4 +1,4 @@
-# Generate the interal package data, the parameters and the default intial states.
+# Generate the internal package data, the parameters and the default initial states.
 
 DIR <- here::here("data-raw")
 
@@ -11,7 +11,7 @@ default_params <- read.csv(file.path(DIR, "default_params.csv"), stringsAsFactor
 usethis::use_data(default_params, overwrite = TRUE, internal = FALSE)
 
 
-# Inital state values also come from  MEND 2013.
+# Initial state values also come from  MEND 2013.
 # Wang, G., Post, W.M. and Mayes, M.A. (2013), Development of microbial‐enzyme‐mediated decomposition
 # model parameters through steady‐state and dynamic analyses. Ecological Applications,
 # 23: 255-272. doi:10.1890/12-0681.1

@@ -1,9 +1,93 @@
 
+#' Load the parameter values into a environment
+#'
+#' @param ptable data.table containing the following columns: parameter, value, and units.
+#' @importFrom assertthat assert_that
+#' @family helper functions
+internal_load_params <- function(ptable, state){
+
+  # Make sure that the parameter table has the correct names.
+  req_names <- c("parameter", "description", "units", "value")
+  assert_that(has_name(ptable, req_names))
+
+  # Create the empty environment
+  env <- new.env(parent = emptyenv())
+
+  # Extract the parameter tables.
+  p        <- ptable$value
+  names(p) <- ptable$parameter
+
+  mapply(function(pname, pvalue){
+    assign(pname, pvalue, envir = env)
+  }, pname = names(p), pvalue = p)
+
+  mapply(function(sname, svalue){
+    assign(sname, svalue, envir = env)
+  }, sname = names(state), svalue = state)
+
+  return(env)
+
+}
+
+
+load_env <- function(env, here){
+
+  ll <- ls(env)
+  for (i in ll){
+    assign(i, env[[i]], envir = here)
+  }
+
+}
+
+test <- function(ptable, state, flux){
+
+  env <- internal_load_params(ptable, state)
+
+
+}
+
+
+test(MEMC::default_params, carbon_fluxes)
+
+
+
+test(MEMC::default_params)
+
+
+
+
+get_env_elements(x)
+
+test_function <- function(){
+
+  env <- internal_load_params(MEMC::default_params, MEMC::default_inital)
+  carbon_pools(1, env, carbon_fluxes)
+
+
+
+}
+
+
+load_env <- function(env){
+
+  ll <- ls(env)
+
+  for (i in ll){
+
+    assign(i, env[[i]])
+
+  }
+
+
+}
+
+
+parent.frame(env)
 
 #' Set up a model configuration
 #'
 #' @param params data.table containing the following columns: parameter, value, and units.
-#' @param state a vector of the intial state values, must be named
+#' @param state a vector of the initial state values, must be named
 #' @param carbon_pools_func a function defining the carbon  pools
 #' @param carbon_fluxes_func a function defining the carbon fluxes between pools
 #' @param name default set to NULL otherwise is a string of the model configuration name.
@@ -47,7 +131,7 @@ configure_model <- function(params, state, carbon_pools_func, carbon_fluxes_func
 #'
 #' @param mod model object created by \code{make_model}
 #' @param time a vector of the time setps
-#' @param params default set to NULL, will then use the paramter table read in with the "mod" object.
+#' @param params default set to NULL, will then use the parameter table read in with the "mod" object.
 #' @param ... additional arguments that can be read into \code{deSolve::ode}
 #' @return a long formatted data.table of the simulation results
 #' @importFrom assertthat assert_that
@@ -68,7 +152,7 @@ solve_model <- function(mod, time, params = NULL, ...){
     rslt  <- ode(y = mod$state,      # initial state estimates
                           times = time,  # times to solve over
                           parms = mod$params,  # parameter table
-                          func = mod$carbon_pools_func, # the pool represenation we are intrested in
+                          func = mod$carbon_pools_func, # the pool representation we are interested in
                           flux_function =  mod$carbon_fluxes_func,
                           ...) # extra ode arguments
 
@@ -81,8 +165,8 @@ solve_model <- function(mod, time, params = NULL, ...){
     rslt  <- deSolve::ode(y = mod$state,      # initial state estimates
                           times = time,       # times to solve over
                           parms = params,     # parameter table
-                          func = mod$carbon_pools_func, # the pool represenation we are intrested in
-                          flux_function =  mod$carbon_fluxes_func,
+                          func = mod$carbon_pools_func, # the pool representation we are interested in
+                          flux_function = mod$carbon_fluxes_func,
                           ...) # extra ode arguments
 
   }
@@ -107,7 +191,7 @@ solve_model <- function(mod, time, params = NULL, ...){
 }
 
 
-#' Update a paramter table with new values
+#' Update the parameter table with new values
 #'
 #' @param new_params a named vector of parameter values to update the param table.
 #' @param param_table data.table containing the following columns: parameter, value, and units, this is the basic parameter table that will be updated with the new values.
@@ -139,5 +223,55 @@ update_params <- function(new_params, param_table){
   return(param_table)
 
 }
+
+
+#' Modify a flux functions
+#'
+#' @param params a table of parameters
+#' @param state a vector of the initial state values, must be named
+#' @param flux_func a function that will return a list of functions that modify how carbon moves between the carbon pools.
+#' @param replace_with a list containing the new elements of the functions
+#' @return a list of carbon flux functions
+#' @importFrom assertthat assert_that
+#' @export
+#' @family helper functions
+modify_fluxes_func <- function(params, state, flux_func, replace_with){
+
+  fluxes <- flux_func(state = state, parms = params)
+  fluxes_copy <- fluxes
+
+  # Check the inputs
+  assert_that(is.function(flux_func))
+  assert_that(all(unlist(lapply(fluxes, is.function))))
+  assert_that(is.character(names(fluxes)))
+
+  assert_that(is.list(replace_with), msg = 'replace_with should be a list of functions')
+  assert_that(is.character(names(replace_with)))
+  assert_that(all(names(replace_with) %in% names(fluxes)), msg = 'all elements of replace_with must be within flux_func')
+  assert_that(all(unlist(lapply(replace_with, is.function))), msg = 'all elements of replace_with must be within flux_func')
+
+  # Format the parameters into a vector.
+  p        <- params$value
+  names(p) <- params$parameter
+
+  with(as.list(c(state, p)),{
+    E.c <- 10
+  # Subset the flux function so that it only contains default fluxes that should not be replaced.
+  fluxes <- fluxes[!names(fluxes) %in% names(replace_with)]
+
+  out <- function(state, parms){append(fluxes, replace_with)}
+
+  # Make sure that the length of the modified fluxes matches the copy of the original fluxes.
+  x <- out(state, parms)
+  assert_that(length(x) == length(fluxes_copy))
+
+  return(out)
+  })
+}
+
+
+
+
+
 
 

@@ -31,6 +31,12 @@ test_that("configure_model", {
                                carbon_fluxes_func = carbon_fluxes, name = test_name),
                regexp = "parms missing values for:  I.p, g.d, f.d, I.d")
 
+  # Check to make sure that when new parameter values are being used.
+  x <- configure_model(params, init, carbon_pools, carbon_fluxes)
+  new_table <- params
+  new_table$value <- new_table$value * 2
+  y <- configure_model(new_table, init, carbon_pools, carbon_fluxes)
+  expect_true(all(y$params$value != x$params$value))
 
 })
 
@@ -62,7 +68,7 @@ test_that("solve_model", {
   expect_lte(mean(abs(lsode$value - ode45$value)), 1e-5)
   expect_lte(mean(abs(out1$value - ode45$value)), 1e-5)
 
-  # Check that appropriate erros are being thrown.
+  # Check that appropriate error are being thrown.
   expect_error(solve_model(mod = mod1, time = "f"))
   expect_error(solve_model(mod = mod1[1:2], time = test_time), regexp = "mod must a model object created by configure_model")
   expect_error(solve_model(mod = mod1, time = test_time, params = params[1:5, ]), regexp = "problem with the params table being read in")
@@ -73,7 +79,7 @@ test_that("solve_model", {
 
 test_that("update_params", {
 
-  # make up a test dataframe to work with, note that it needs to have the MEMC default paramter table
+  # make up a test data frame to work with, note that it needs to have the MEMC default parameter table
   # column names.
   int <- 1:3
   table <- data.frame("parameter" = letters[int], "description" = "testthat", units = "testthat", value = int)
@@ -94,5 +100,45 @@ test_that("update_params", {
   new_params <- 10
   names(new_params) <- 'fake'
   expect_error(update_params(new_params = new_params, param_table = table), "new_params must refer to a parameter already existing in param_table")
+
+  # Update an actual data table, make sure that only one value was updated.
+  change        <- params[3, ]$value * 3
+  names(change) <- params[3, ]$parameter
+  new_output <- update_params(new_params = change, param_table = params)
+  expect_equal(sum(new_output$value != params$value), 1)
+
+})
+
+test_that("solve_model", {
+
+  mod1 <- configure_model(params = params, state = init, carbon_pools_func = carbon_pools,
+                          carbon_fluxes_func = carbon_fluxes)
+  t    <- seq(from = 1, to = 50, length.out = 5)
+  out1 <- solve_model(mod1, time = t)
+
+  # Change the half saturation constant for biomass uptake.
+  change <- params[params["parameter"] == "K.d", ]$value * 10
+  names(change) <- "K.d"
+  new_table <- update_params(new_params = change, param_table = params)
+  out2 <- solve_model(mod1, time = t, params = new_table)
+
+  names(out1) <- c("time", "variable", "value1", "units", "name")
+  names(out2) <- c("time", "variable", "value2", "units", "name")
+  joined_df <- merge(out1, out2, all=FALSE)
+
+  # Since all starting with the same inital states make sure that the values
+  # being returned at time step 1 are all equal
+  time1 <- joined_df[joined_df$time == t[1], ]
+  expect_equal(time1$value1, time1$value2)
+
+  # Overall the system is being held constant (there is no C being added to the system)
+  # so we would expect the results for total carbon be be the same...
+  total <- joined_df[joined_df$variable == "Tot",]
+  expect_equal(total$value1, total$value2, tolerance = 1e-2)
+
+  # Because of the parameter that we changed is related to biomass update check to make sure that
+  # the biomass results are different from one another.
+  biomass <- joined_df[(joined_df$time != 1 & joined_df$variable == "B"), ]
+  expect_gte(mean(abs(biomass$value1 - biomass$value2)), 1e-2)
 
 })

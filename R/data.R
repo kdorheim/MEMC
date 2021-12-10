@@ -39,3 +39,25 @@
 #' print(default_inital)
 "default_inital"
 
+
+#' MEMC model configurations for MEND Wang et al. 2013
+#'
+#'
+#' @format an object created form \code{configure_model}.
+#' \describe{
+#' \item{name}{MEND}
+#' \item{params}{the default MEMC parameter table}
+#' \item{state}{the default inital state values for MEMC}
+#' \item{carbon_pools_func}{carbon pools based on Wang et al. 2013}
+#' \item{carbon_fluxes_func}{carbon fluxes based on Wang et al. 2013}
+#' }
+#' @family MEMC configurations
+#' @references \href{https://doi.org/10.1890/12-0681.1}{Wang et al. 2013}
+#' @examples
+#' MEND_model
+#' solve_model(mod = MEND_model, time = 1:10)
+"MEND_model"
+
+
+
+
